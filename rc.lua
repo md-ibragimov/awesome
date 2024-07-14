@@ -251,6 +251,10 @@ awful.keyboard.append_global_keybindings({
               {description = "show the menubar", group = "launcher"}),
 })
 
+--set wallpapers 
+awful.spawn.with_shell("sh ~/.fehbg")
+
+
 -- Tags related keybindings
 awful.keyboard.append_global_keybindings({
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
