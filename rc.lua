@@ -13,6 +13,10 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
+
+--battery widget
+local battery_widget = require("battery-widget")
+
 -- Declarative object management
 local ruled = require("ruled")
 local menubar = require("menubar")
@@ -193,6 +197,9 @@ screen.connect_signal("request::desktop_decoration", function(s)
                 mykeyboardlayout,
                 wibox.widget.systray(),
                 mytextclock,
+                battery_widget {
+                    -- pass options here
+                },        
                 s.mylayoutbox,
             },
         }
