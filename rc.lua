@@ -40,6 +40,7 @@ end)
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.useless_gap = 4
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -199,6 +200,13 @@ screen.connect_signal("request::desktop_decoration", function(s)
                 mytextclock,
                 battery_widget {
                     -- pass options here
+                    battery_prefix = "",
+                    percent_colors = {
+                        { 25, "red"},
+                        { 50, "white"},
+                        {999, "white" },
+                    },
+                
                 },        
                 s.mylayoutbox,
             },
