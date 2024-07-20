@@ -39,8 +39,8 @@ end)
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.useless_gap = 4
+beautiful.init("~/.config/awesome/themes/default/theme.lua")
+-- beautiful.useless_gap = 15
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -83,7 +83,7 @@ tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
         -- awful.layout.suit.floating,
         -- awful.layout.suit.tile,
-        -- awful.layout.suit.tile.left,
+        awful.layout.suit.tile.left,
         -- awful.layout.suit.tile.bottom,
         -- awful.layout.suit.tile.top,
         awful.layout.suit.fair,
@@ -98,23 +98,23 @@ end)
 -- }}}
 
 -- {{{ Wallpaper
-screen.connect_signal("request::wallpaper", function(s)
-    awful.wallpaper {
-        screen = s,
-        widget = {
-            {
-                image     = beautiful.wallpaper,
-                upscale   = true,
-                downscale = true,
-                widget    = wibox.widget.imagebox,
-            },
-            valign = "center",
-            halign = "center",
-            tiled  = false,
-            widget = wibox.container.tile,
-        }
-    }
-end)
+-- screen.connect_signal("request::wallpaper", function(s)
+--     awful.wallpaper {
+--         screen = s,
+--         widget = {
+--             {
+--                 image     = beautiful.wallpaper,
+--                 upscale   = true,
+--                 downscale = true,
+--                 widget    = wibox.widget.imagebox,
+--             },
+--             valign = "center",
+--             halign = "center",
+--             tiled  = false,
+--             widget = wibox.container.tile,
+--         }
+--     }
+-- end)
 -- }}}
 
 -- {{{ Wibar
@@ -127,7 +127,7 @@ mytextclock = wibox.widget.textclock()
 
 screen.connect_signal("request::desktop_decoration", function(s)
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[2])
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[3])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -251,6 +251,26 @@ awful.keyboard.append_global_keybindings({
         function() 
         os.execute("rofi -show drun -icon-theme Papirus -show-icons")
         end, {description="rofi show", group="launcher"}
+    ),
+
+    --chrome open
+    awful.key({modkey}, 'b',
+        function ()
+        awful.spawn.with_shell("google-chrome-stable")
+        end, {description="open chrome", group="launcher"}
+    ),
+
+    awful.key({modkey, "Shift"}, 'b',
+        function ()
+        awful.spawn.with_shell("google-chrome-stable -incognito")
+        end, {description="open chrome (incognito)", group="launcher"}
+    ),
+
+    --telegram open
+    awful.key({modkey}, 't',
+        function ()
+        awful.spawn.with_shell("telegram-desktop")
+        end, {description="open telegram", group="launcher"}
     ),
         
 
@@ -449,7 +469,7 @@ client.connect_signal("request::default_keybindings", function()
                 c:raise()
             end,
             {description = "toggle fullscreen", group = "client"}),
-        awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+        awful.key({ modkey }, "q",      function (c) c:kill()                         end,
                 {description = "close", group = "client"}),
         awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
                 {description = "toggle floating", group = "client"}),
