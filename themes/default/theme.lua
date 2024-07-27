@@ -14,21 +14,21 @@ local theme = {}
 
 theme.font          = "JetBrains Mono Nerd Font 8"
 
-theme.bg_normal     = "#172815"
-theme.bg_focus      = "#3E5622"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#709255"
+theme.bg_normal     = "#1d2021"
+theme.bg_focus      = "#d65d0e"
+theme.bg_urgent     = "#458588"
+theme.bg_minimize   = "#83a598"
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#F0F4EF"
-theme.fg_focus      = "#F0F4EF"
+theme.fg_normal     = "#ebdbb2"
+theme.fg_focus      = "#1d2021"
 theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.fg_minimize   = "#1d2021"
 
 theme.useless_gap         = dpi(6)
 theme.border_width        = dpi(4)
-theme.border_color_normal = "#172815"
-theme.border_color_active = "#3E5622"
+theme.border_color_normal = "#282828"
+theme.border_color_active = "#d65d0e"
 theme.border_color_marked = "#3E5622"
 
 -- There are other variable sets

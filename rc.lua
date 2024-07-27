@@ -243,7 +243,7 @@ awful.keyboard.append_global_keybindings({
         end, {description = "volume down", group = "hotkeys"}),
     awful.key({}, "XF86AudioMute",
         function()
-        os.execute("amixer -q set Master toggle")
+        os.execute("pactl set-sink-mute 0 toggle")
         end, {description = "toggle mute", group = "hotkeys"}),
         
         
