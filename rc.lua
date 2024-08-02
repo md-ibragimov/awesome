@@ -17,6 +17,7 @@ local naughty = require("naughty")
 --battery widget
 local battery_widget = require("battery-widget")
 
+
 -- Declarative object management
 local ruled = require("ruled")
 local menubar = require("menubar")
@@ -253,17 +254,25 @@ awful.keyboard.append_global_keybindings({
         end, {description="rofi show", group="launcher"}
     ),
 
-    --chrome open
+    --lock shortcut
+
+    awful.key({modkey}, 'l',
+        function ()
+        awful.spawn.with_shell("i3lock -i ~/Wallpapers/lockscreen.png")
+        end, {description="lock screen", group="client"}
+    ), 
+
+    --browser open
     awful.key({modkey}, 'b',
         function ()
-        awful.spawn.with_shell("google-chrome-stable")
-        end, {description="open chrome", group="launcher"}
+        awful.spawn.with_shell("firefox-developer-edition")
+        end, {description="open browser", group="launcher"}
     ),
 
     awful.key({modkey, "Shift"}, 'b',
         function ()
-        awful.spawn.with_shell("google-chrome-stable -incognito")
-        end, {description="open chrome (incognito)", group="launcher"}
+        awful.spawn.with_shell("firefox-developer-edition --private-window")
+        end, {description="open browser (incognito)", group="launcher"}
     ),
 
     --telegram open
@@ -363,9 +372,9 @@ awful.keyboard.append_global_keybindings({
               {description = "swap with previous client by index", group = "client"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
+    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
+    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "decrease master width factor", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),
